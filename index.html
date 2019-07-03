@@ -1,0 +1,97 @@
+<head>
+    <title>
+        The Psychic Game
+    </title>
+    <link rel= "stylesheet" type= "text/css" href='style.css'>
+
+</head>
+
+<body>
+    <script>
+            var computerChoices = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+        ];
+
+        var wins = 0;
+        var losses = 0;
+        var guesses = 9;
+        var alreadyGuessed = [];
+        var computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+
+        
+
+
+        document.onkeyup = function(event) {
+        var playerLetter = event.key;
+        
+        
+        if (computerChoices.includes(playerLetter)) {
+            if (playerLetter === computerLetter) {
+            wins++;
+            guesses = 9;
+            alreadyGuessed = [];
+            computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+            alert("You got it!");
+            } else if (playerLetter != computerLetter) {
+            alreadyGuessed.push(playerLetter)
+            guesses--;
+            }
+            if (guesses === 0) {
+            losses++;
+            guesses = 9;
+            alreadyGuessed = [];
+            computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+            
+            }
+        } else {
+            alert("You must choose a letter!");
+        }
+
+        document.getElementById("player-guess").innerHTML = "   " + playerLetter;
+        document.getElementById("win-counter").innerHTML = " " + wins;
+        document.getElementById("loss-counter").innerHTML = " " + losses;
+        document.getElementById("remaining").innerHTML = " " + guesses;
+        document.getElementById("guessed").innerHTML = " " + alreadyGuessed;
+        };
+                
+            
+            
+            
+            
+            
+    </script>
+    <header>
+            <h1>The Psychic Game</h1>
+            <h3>You get 9 chances per round to psychically choose which letter of the alpabet the computer is thinking of.</h3>
+            <p>Guess what letter I'm thinking of! <span id="player-guess"></span></p>
+            <p>Wins: <span id="win-counter"></span></p>
+            <p>Losses: <span id="loss-counter"></span></p>
+            <p>Already Guessed: <span id="guessed"></span> 
+            <p>Guesses remaining:<span id="remaining"></span></p>
+</body>
